@@ -29,7 +29,7 @@ public class Main {
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
     public static final String PHONE_NOT_EXIST = "Phone number does not exist.";
-    public static final String NO_SAME_PHONE = "All contacts have different phone numbers";
+    public static final String NO_SAME_PHONE = "All contacts have different phone numbers.";
     public static final String FOUND_SAME_PHONE = "There are contacts that share phone numbers.";
 
     public static void main(String[] args) {
