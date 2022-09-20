@@ -1,6 +1,8 @@
 import contactBook.Contact;
 import contactBook.ContactBook;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -14,6 +16,7 @@ public class Main {
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
+    public static final String GET_NUMBER     = "GN";
     public static final String SAME_PHONE     = "EP";
 
     //Constantes que definem as mensagens para o utilizador
@@ -25,6 +28,7 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String PHONE_NOT_EXIST = "Phone number does not exist.";
     public static final String NO_SAME_PHONE = "All contacts have different phone numbers";
     public static final String FOUND_SAME_PHONE = "There are contacts that share phone numbers.";
 
@@ -56,6 +60,8 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case GET_NUMBER:
+                    getNumberContact(in, cBook);
                 case SAME_PHONE:
                     duplicatePhone(cBook);
                 default:
@@ -153,10 +159,25 @@ public class Main {
         else System.out.println(BOOK_EMPTY);
     }
 
+    private static String getNumberContact(Scanner in, ContactBook cBook){
+        if(cBook.getNumberOfContacts() < 1){
+            System.out.println(PHONE_NOT_EXIST);
+        }
+        int phoneNumber = in.nextInt();
+        String contactName;
+        if(cBook.getContact(phoneNumber) == null){
+            System.out.println(PHONE_NOT_EXIST);
+            return null;
+        }
+        else{
+            return cBook.getContact(phoneNumber);
+        }
+    }
+
     private static void duplicatePhone (ContactBook cBook) {
         if(cBook.getNumberOfContacts() <= 1)
             System.out.println(NO_SAME_PHONE);
-        List<integer> phoneList = new ArrayList<integer>();
+        List<Integer> phoneList = new ArrayList<Integer>();
         cBook.initializeIterator();
         while( cBook.hasNext() ) {
             Contact c = cBook.next();
