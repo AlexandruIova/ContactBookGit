@@ -62,8 +62,10 @@ public class Main {
                     break;
                 case GET_NUMBER:
                     getNumberContact(in, cBook);
+                    break;
                 case SAME_PHONE:
                     duplicatePhone(cBook);
+                    break;
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -159,18 +161,19 @@ public class Main {
         else System.out.println(BOOK_EMPTY);
     }
 
-    private static String getNumberContact(Scanner in, ContactBook cBook){
-        if(cBook.getNumberOfContacts() < 1){
+    private static void getNumberContact(Scanner in, ContactBook cBook){
+        int phoneNumber = in.nextInt();in.nextLine();
+        String contactName = "";
+        if(cBook.getNumberOfContacts() < 1) {
             System.out.println(PHONE_NOT_EXIST);
+            return;
         }
-        int phoneNumber = in.nextInt();
-        String contactName;
         if(cBook.getContact(phoneNumber) == null){
             System.out.println(PHONE_NOT_EXIST);
-            return null;
         }
         else{
-            return cBook.getContact(phoneNumber);
+            contactName = cBook.getContact(phoneNumber);
+            System.out.println(contactName);
         }
     }
 
