@@ -175,18 +175,21 @@ public class Main {
     }
 
     private static void duplicatePhone (ContactBook cBook) {
-        if(cBook.getNumberOfContacts() <= 1)
+        if (cBook.getNumberOfContacts() <= 1) {
             System.out.println(NO_SAME_PHONE);
+            return;
+        }
         List<Integer> phoneList = new ArrayList<Integer>();
         cBook.initializeIterator();
         while( cBook.hasNext() ) {
             Contact c = cBook.next();
             if(phoneList.contains(c.getPhone())) {
                 System.out.println(FOUND_SAME_PHONE);
-                break;
+                return;
             }
             phoneList.add(c.getPhone());
         }
+        System.out.println(NO_SAME_PHONE);
     }
 
 }
